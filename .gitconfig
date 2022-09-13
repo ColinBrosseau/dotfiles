@@ -1,0 +1,30 @@
+[user]
+	email = colin@colinbrosseau.com
+	name = Colin Brosseau
+#	signingkey = 75E207D7888B6905
+[push]
+	default = current
+#[init]
+#	templatedir = ~/.git-templates
+#[gpg]
+#	program = gpg2
+#[commit]
+#	gpgsign = true
+
+[alias]
+	br = branch
+	d = diff
+	dc = diff --cached
+	cm = commit -m
+	co = checkout
+	st = status
+	stm = status --untracked=no
+[credential]
+	helper = cache --timeout 3600000
+[core]
+	excludesFile = ~/.gitignore
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
