@@ -39,7 +39,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(coverlay cov xml+ magit diff-hl flycheck-pyflakes plantuml-mode org-roam-ui org-wc org-roam fill-column-indicator solarized-theme elpher clang-format flymake-google-cpplint json-mode buffer-expose flycheck zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu neotree elpy column-enforce-mode)))
+   '(zeal-at-point coverlay cov xml+ magit diff-hl flycheck-pyflakes plantuml-mode org-roam-ui org-wc org-roam fill-column-indicator solarized-theme elpher clang-format flymake-google-cpplint json-mode buffer-expose flycheck zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu neotree elpy column-enforce-mode)))
 ;; helm-gtags, iedit, mastodon, elpher
 
 (custom-set-faces
@@ -159,12 +159,27 @@
 
 ;; (use-package plantuml-mode
 ;;   :init
-;;   (setq plantuml-default-exec-mode 'executable)
+;;   ;; (setq plantuml-default-exec-mode 'executable)
 ;;   ;; (setq plantuml-jar-path "/usr/share/plantuml/plantuml.jar")
 ;;   ;; (setq org-plantuml-jar-path (expand-file-name "/usr/share/plantuml/plantuml.jar"))
 ;;   ;; (setq org-startup-with-inline-images t)
-;;   (add-to-list 'org-src-lang-modes '("plantuml" . plantuml)))
-;;   ;; (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t))))
+;;   ;; (add-to-list 'org-src-lang-modes '("plantuml" . plantuml)))
+;;   x;; (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t))))
+
+;; (setq plantuml-jar-path "/usr/share/plantuml/plantuml.jar")
+;; (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+(org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
+
+;; Sample jar configuration
+(setq plantuml-jar-path "/home/colinbrosseau/plantuml.jar")
+(setq org-plantuml-jar-path "/home/colinbrosseau/plantuml.jar")
+(setq plantuml-default-exec-mode 'jar)
+
+;; Sample executable configuration
+;; (setq plantuml-executable-path "/path/to/your/copy/of/plantuml.bin")
+;; (setq plantuml-default-exec-mode 'executable)
+
+
 
 ;; in Org-Mode, activate line wrap
 (add-hook 'org-mode-hook (lambda() (visual-line-mode 1)))
@@ -189,3 +204,7 @@
 ;; LaTex
 (require 'tex-mode)`
 (add-hook 'latex-mode-hook 'flyspell-mode)
+
+
+;; Load/Save opened buffers and locations at startup/exit of emacs
+(desktop-save-mode 1)
